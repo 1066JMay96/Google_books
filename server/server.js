@@ -1,8 +1,6 @@
 const express = require('express');
-const path = require('path');
-const db = require('./config/connection');
 const routes = require('./routes');
-
+const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -15,6 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(routes);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebook");
 
 db.once('open', () => {
     app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
