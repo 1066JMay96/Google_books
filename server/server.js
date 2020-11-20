@@ -15,6 +15,4 @@ if (process.env.NODE_ENV === 'production') {
 app.use(routes);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebook");
 
-db.once('open', () => {
-    app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-});
+app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
